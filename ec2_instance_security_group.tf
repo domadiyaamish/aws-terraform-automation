@@ -49,5 +49,6 @@ provider "aws" {
 
                     tags = { 
                         Name = "TF_SG"
-                        
+
                     }
+            }
