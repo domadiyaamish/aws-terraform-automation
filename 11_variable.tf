@@ -14,8 +14,23 @@ resource "aws_instance" "variable" {
   #bool
   associate_public_ip_address = var.asscocation_public_type
   tags = {
-    Name = "ec2_variable"
+    Name = var.tags_variable
   }
+}
+
+resource "aws_iam_user" "exaple" {
+  count = length(var.user_names)
+  name = var.user_names[count.index]
+}
+
+#map varaible
+variable "map_type" {
+    description = "map variable"
+    type = map(sting)
+    default = {
+        project = "project-alpha",
+        environment = "amish"
+    }
 }
 
 #sting variable
@@ -41,10 +56,6 @@ variable "asscocation_public_type" {
 }
 
 # list varaible
-resource "aws_iam_user" "exaple" {
-  count = length(var.user_names)
-  name = var.user_names[count.index]
-}
 
 variable "user_names" {
   description = "list varaible"
